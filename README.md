@@ -1,4 +1,17 @@
-https://challenge.synacor.com/
+# Synacor Challenge Solution
+
+My notes and scripts from solving the [Synacor Challenge](https://challenge.synacor.com/).
+
+## Scripts and files
+
+- Provided: arch-spec + challenbe.bin
+- sol.py: Simulator
+- disa.py: Disasembler
+- formular.py: Solver for the `_ + _ * _^2 + _^3 - _ = 399` puzzle
+- ack.py: Calculate ackerman function to determine right teleport register value
+- vault.py: Solver for the vault maze
+- code-annotated.txt: Disasemlbed code annotated with some reverse engineered functions
+- strs.txt: Dump of decrypted strings. Some strings have a second level of decryption and are printed using `out_decrypt` (xor with value in `c`).
 
 ## Print encrypted string
 
@@ -10,39 +23,35 @@ f(encryption code in c)
 
 ## Important Functions
 
-- 1458: for_each_char(a: str, b: fn(a: char)) -> b: length of str
-- 1518: print(a: str)
-- 1531: out_decrypt(a: char) # decryption key in c
-- 1543: for_each_char_checked(a: str, b: fn(a: char), c: succ) -> a: c if succ else 32767
-- 1571: find_char(a: str, b: char) -> a: index of b in a or 32767
-- 1588: find_string_in_list(a: List[str], b: str) -> a: index of b in a or 32767
-- 1667: str_eq(a: str, b: str) -> a: a == b
-- 1767: read(a: max_len, b: buffer) -> b # writes length to b[0]
+- 1458: `for_each_char(a: str, b: fn(a: char)) -> b: length of str`
+- 1518: `print(a: str)`
+- 1531: `out_decrypt(a: char) # decryption key in c`
+- 1543: `for_each_char_checked(a: str, b: fn(a: char), c: succ) -> a: c if succ else 32767`
+- 1571: `find_char(a: str, b: char) -> a: index of b in a or 32767`
+- 1588: `find_string_in_list(a: List[str], b: str) -> a: index of b in a or 32767`
+- 1667: `str_eq(a: str, b: str) -> a: a == b`
+- 1767: `read(a: max_len, b: buffer) -> b # writes length to b[0]`
 - 2734: Game start
 
-Handler names list at 27398:
+- Handler names list at 27398:
+  - 25943: 0 go
+  - 25946: 1 look
+  - 25951: 2 help
+  - 25956: 3 inv
+  - 25960: 4 take
+  - 25965: 5 drop
+  - 25970: 6 use
+- Handler functions list at 27406:
+  - 3245: 0 go
+  - 2964: 1 look
+  - 3333: 2 help
+  - 3362: 3 inv
+  - 3400: 4 take
+  - 3488: 5 drop
+  - 3568: 6 use
+- Teleport handler: 5445
 
-- 25943: 0 go
-- 25946: 1 look
-- 25951: 2 help
-- 25956: 3 inv
-- 25960: 4 take
-- 25965: 5 drop
-- 25970: 6 use
-
-Handler functions list at 27406:
-
-- 3245: 0 go
-- 2964: 1 look
-- 3333: 2 help
-- 3362: 3 inv
-- 3400: 4 take
-- 3488: 5 drop
-- 3568: 6 use
-
-Teleport handler: 5445
-
-h Check:
+## h check
 
 ```
 [5483] a = 4
@@ -169,4 +178,4 @@ west
 
 ## Vault code seen in the mirror: xbYuVVVAdxqO
 
-OpxbAVVVuYdx
+Mirrored: OpxbAVVVuYdx
